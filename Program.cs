@@ -11,6 +11,9 @@ namespace localux
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            //Application.Run(new FormCreerEmployer());
+            //Application.Run(new FormConnexion());
+            //Application.Run(new FormModifierMdp());
             Application.Run(new Form1());
         }
     }

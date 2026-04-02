@@ -22,11 +22,11 @@ public partial class Employe
     [Column("mdp")]
     public string Mdp { get; set; } = null!;
 
+    [Column("login")]
+    public string Login { get; set; } = null!;
+
     [Column("date_modification_mdp")]
     public DateTime? DateModificationMdp { get; set; }
-
-    [Column("salt")]
-    public string Salt { get; set; } = null!;
 
     public virtual ICollection<HistoriqueMdp> HistoriqueMdps { get; set; } = new List<HistoriqueMdp>();
     public virtual ICollection<LogConnexion> LogConnexions { get; set; } = new List<LogConnexion>();
