@@ -1,8 +1,14 @@
-﻿using System;
+﻿using BCrypt.Net;
+using localux.Models;
+using OtpNet;
+using System;
 using System.Linq;
 using System.Windows.Forms;
-using localux.Models;
-using BCrypt.Net;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
+using MimeKit.Utils;
+using QRCoder;
 
 namespace localux
 {
@@ -44,7 +50,48 @@ namespace localux
                 Login = login,
                 Mdp = hash,
                 DateModificationMdp = DateTime.Now
+                // Pas de champ Email
             };
+
+            var key = KeyGeneration.GenerateRandomKey(20);
+            employe.otpCode = Base32Encoding.ToString(key);
+
+            // Utilisation du login comme identifiant dans l'URI OTP
+            string uriString = new OtpUri(OtpType.Totp, employe.otpCode, employe.Login,
+                                          "SAVARY", OtpHashMode.Sha512, 8, 300).ToString();
+
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(uriString, QRCodeGenerator.ECCLevel.Q))
+            using (QRCode qrCode = new QRCode(qrCodeData))
+            using (Bitmap qrCodeImage = qrCode.GetGraphic(2))
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                qrCodeImage.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                // Préparation de l'email
+                var email = new MimeMessage();
+                email.From.Add(MailboxAddress.Parse("testOTP@sio-savary.fr"));
+                email.To.Add(MailboxAddress.Parse("l.olivier85150@gmail.com")); // Email personnel
+                email.Subject = "Votre QRCode de connexion";
+
+                var builder = new BodyBuilder();
+                var image = builder.LinkedResources.Add("qrcode.jpg", memoryStream);
+                image.ContentId = MimeUtils.GenerateMessageId();
+                builder.HtmlBody = $"Bonjour {employe.Prenom},<br><br>Voici votre QRCode de connexion :<br><img src='cid:{image.ContentId}'>";
+                email.Body = builder.ToMessageBody();
+
+                // Envoi email
+                using (SmtpClient smtpClient = new SmtpClient())
+                {
+                    smtpClient.Connect("ssl0.ovh.net", 465, SecureSocketOptions.SslOnConnect);
+                    smtpClient.Authenticate("admin@sio-savary.fr", "P@ssw0rd85!");
+                    smtpClient.Send(email);
+                    smtpClient.Disconnect(true);
+                }
+            }
+
+            MessageBox.Show("Employé créé et email envoyé avec succès !");
 
             cnx.Employe.Add(employe);
             cnx.SaveChanges();

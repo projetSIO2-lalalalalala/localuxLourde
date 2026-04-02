@@ -1,13 +1,17 @@
 ﻿using localux.Models;
+using Microsoft.VisualBasic.ApplicationServices;
+using OtpNet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace localux
 {
@@ -47,6 +51,7 @@ namespace localux
         {
             string nouveauMdp = tbMdp.Text;
             string confirmMdp = tbConfirmerMdp.Text;
+            string pin = tbPin.Text; // Utilisez un TextBox pour la saisie du code OTP
 
             if (nouveauMdp != confirmMdp)
             {
@@ -70,6 +75,19 @@ namespace localux
 
             // Hash du nouveau mot de passe
             string hashMdp = BCrypt.Net.BCrypt.HashPassword(nouveauMdp);
+
+            // Correction ici : on utilise employe.OtpCode
+            string otpCode = Convert.ToString(employe.otpCode);
+
+            var base32Bytes = Base32Encoding.ToBytes(otpCode);
+            var totp = new Totp(base32Bytes, 300, OtpHashMode.Sha512, 8);
+            bool ok = totp.VerifyTotp(pin, out long timeWindowUsed);
+
+            if (!ok)
+            {
+                MessageBox.Show("Code OTP incorrect");
+                return;
+            }
 
             // Mise à jour de l'employé
             var employeDb = cnx.Employe.FirstOrDefault(e => e.Id == employe.Id);

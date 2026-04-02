@@ -28,6 +28,10 @@ public partial class Employe
     [Column("date_modification_mdp")]
     public DateTime? DateModificationMdp { get; set; }
 
+
+    [Column("otp_code")]
+    public string otpCode { get; set; } = null!;
+
     public virtual ICollection<HistoriqueMdp> HistoriqueMdps { get; set; } = new List<HistoriqueMdp>();
     public virtual ICollection<LogConnexion> LogConnexions { get; set; } = new List<LogConnexion>();
     public virtual ICollection<LocationSansChauffeur> LocationsSansChauffeur { get; set; } = new List<LocationSansChauffeur>();

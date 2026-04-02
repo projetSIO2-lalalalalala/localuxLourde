@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[4.1.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.15.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -64,9 +68,17 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
+            "Otp.NET": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.7.0, )"
             }
           },
           "imports": [

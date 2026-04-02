@@ -102,3 +102,10 @@ C:\Users\lolivier\Documents\localuxLourde\localux\localux\obj\Debug\net8.0-windo
 C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
 C:\Users\lolivier\Documents\localuxLourde\localux\localux\obj\Debug\net8.0-windows\localux.FormCreerEmployer.resources
 C:\Users\lolivier\Documents\localuxLourde\localux\localux\obj\Debug\net8.0-windows\localux.FormModifierMdp.resources
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\MailKit.dll
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\MimeKit.dll
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\Otp.NET.dll
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\QRCoder.dll
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\System.Security.Cryptography.Pkcs.dll
+C:\Users\lolivier\Documents\localuxLourde\localux\localux\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
