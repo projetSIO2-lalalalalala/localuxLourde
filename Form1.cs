@@ -1,3 +1,5 @@
+using localux.Models;
+
 namespace localux
 {
     public partial class Form1 : Form
@@ -6,5 +8,8 @@ namespace localux
         {
             InitializeComponent();
         }
+
+
+        
     }
 }
