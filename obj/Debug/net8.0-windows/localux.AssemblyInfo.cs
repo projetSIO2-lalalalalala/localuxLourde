@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("localux")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb1036bc351b3a7d5ea890164990344536ec0a1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3788c433d5417847665806497d890a2ec708b244")]
 [assembly: System.Reflection.AssemblyProductAttribute("localux")]
 [assembly: System.Reflection.AssemblyTitleAttribute("localux")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
