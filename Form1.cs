@@ -11,7 +11,7 @@ namespace localux
             InitializeComponent();
             InitMenu();
         }
-
+        //ancien code pour conflit
         private void InitMenu()
         {
             // Supprimer les anciens menus 
@@ -26,8 +26,8 @@ namespace localux
 
             var menuStrip = new MenuStrip();
 
-            var menuEmploye = new ToolStripMenuItem("Employés");
-            var itemCreerEmploye = new ToolStripMenuItem("Créer un employé", null, (s, e) =>
+            var menuEmploye = new ToolStripMenuItem("EmployÃ©s");
+            var itemCreerEmploye = new ToolStripMenuItem("CrÃ©er un employÃ©", null, (s, e) =>
             {
                 var f = new FormCreerEmployer();
                 f.ShowDialog();
@@ -42,16 +42,16 @@ namespace localux
                 {
                     var f = new FormConnexion();
                     f.ShowDialog();
-                    InitMenu(); // Actualise le menu après la connexion
+                    InitMenu(); // Actualise le menu aprÃ¨s la connexion
                 });
             }
             else
             {
-                menuConnexion = new ToolStripMenuItem("Déconnexion", null, (s, e) =>
+                menuConnexion = new ToolStripMenuItem("DÃ©connexion", null, (s, e) =>
                 {
                     Session.UtilisateurConnecte = null;
-                    MessageBox.Show("Déconnexion réussie !");
-                    InitMenu(); // Actualise le menu après la déconnexion
+                    MessageBox.Show("DÃ©connexion rÃ©ussie !");
+                    InitMenu(); // Actualise le menu aprÃ¨s la dÃ©connexion
                 });
             }
 
