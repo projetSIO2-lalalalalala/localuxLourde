@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace localux.Models;
@@ -15,6 +16,9 @@ public partial class LocationSansChauffeur : Location
 
     [Column("cout_estimatif")]
     public int? CoutEstimatif { get; set; }
+
+    [Column("observation")]
+    public string? Observation { get; set; }
 
     [Column("la_formule_id")]
     public int? LaFormuleId { get; set; }
