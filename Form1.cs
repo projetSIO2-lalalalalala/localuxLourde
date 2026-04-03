@@ -6,12 +6,13 @@ namespace localux
 {
     public partial class Form1 : Form
     {
+     //ancien code pour conflit
         public Form1()
         {
             InitializeComponent();
             InitMenu();
         }
-        //ancien code pour conflit
+       
         private void InitMenu()
         {
             // Supprimer les anciens menus 
