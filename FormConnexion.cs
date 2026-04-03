@@ -30,7 +30,6 @@ namespace localux
 
         private void btn_Click(object sender, EventArgs e)
         {
-            
             string login = tbLogin.Text;
             string mdp = tbMdp.Text;
             var employe = cnx.Employe.FirstOrDefault(emp => emp.Login == login);
@@ -43,19 +42,17 @@ namespace localux
                 return;
             }
 
-            // Vérification du mot de passe avec bcrypt
             bool mdpValide = BCrypt.Net.BCrypt.Verify(mdp, employe.Mdp);
 
             if (mdpValide)
             {
                 MessageBox.Show("Connexion réussie !");
-                ajouterLogConnextion(employe, "Connexion réussie");
-
+                this.Close(); 
+                return;
             }
             else
             {
                 MessageBox.Show("Mot de passe incorrect.");
-                ajouterLogConnextion(employe, "Connexion echouée");
             }
 
             if (employe.DateModificationMdp == null || (DateTime.Now - employe.DateModificationMdp.Value).TotalDays > 30)
@@ -65,18 +62,6 @@ namespace localux
                 f.Show();
                 this.Close();
             }
-        }
-        private void ajouterLogConnextion(Employe employe,string action)
-        {
-            LogConnexion log = new LogConnexion
-            {
-                DateHeure = DateTime.Now,
-                Action = action,
-                LeEmploye = employe,
-            };
-
-            cnx.LogConnexion.Add(log);
-            cnx.SaveChanges();
         }
     }
 }
