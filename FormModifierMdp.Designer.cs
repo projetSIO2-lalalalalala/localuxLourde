@@ -33,6 +33,8 @@
             tbConfirmerMdp = new TextBox();
             lbConfirmerMdp = new Label();
             btn = new Button();
+            lbPin = new Label();
+            tbPin = new TextBox();
             SuspendLayout();
             // 
             // lbMdp
@@ -79,11 +81,29 @@
             btn.UseVisualStyleBackColor = true;
             btn.Click += btn_Click;
             // 
+            // lbPin
+            // 
+            lbPin.AutoSize = true;
+            lbPin.Location = new Point(217, 200);
+            lbPin.Name = "lbPin";
+            lbPin.Size = new Size(53, 15);
+            lbPin.TabIndex = 5;
+            lbPin.Text = "code pin";
+            // 
+            // tbPin
+            // 
+            tbPin.Location = new Point(327, 200);
+            tbPin.Name = "tbPin";
+            tbPin.Size = new Size(100, 23);
+            tbPin.TabIndex = 6;
+            // 
             // FormModifierMdp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(tbPin);
+            Controls.Add(lbPin);
             Controls.Add(btn);
             Controls.Add(lbConfirmerMdp);
             Controls.Add(tbConfirmerMdp);
@@ -103,5 +123,7 @@
         private TextBox tbConfirmerMdp;
         private Label lbConfirmerMdp;
         private Button btn;
+        private Label lbPin;
+        private TextBox tbPin;
     }
 }
