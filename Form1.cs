@@ -8,6 +8,7 @@ namespace localux
 {
     public partial class Form1 : Form
     {
+     //nouveau code pour conflit
         private readonly MonDbContext db = new MonDbContext();
 
         public Form1()
@@ -16,8 +17,8 @@ namespace localux
 
             var menuStrip = new MenuStrip();
 
-            var menuEmploye = new ToolStripMenuItem("Employés");
-            var itemCreerEmploye = new ToolStripMenuItem("Créer un employé", null, (s, e) =>
+            var menuEmploye = new ToolStripMenuItem("EmployÃ©s");
+            var itemCreerEmploye = new ToolStripMenuItem("CrÃ©er un employÃ©", null, (s, e) =>
             {
                 var f = new FormCreerEmployer();
                 f.ShowDialog();
@@ -75,7 +76,7 @@ namespace localux
 
             if (!int.TryParse(tbLocationId.Text, out var locationId))
             {
-                MessageBox.Show("Veuillez saisir un numéro de location valide.");
+                MessageBox.Show("Veuillez saisir un numÃ©ro de location valide.");
                 return;
             }
 
@@ -89,7 +90,7 @@ namespace localux
 
             if (location == null)
             {
-                MessageBox.Show("Aucune location valide trouvée pour ce numéro.");
+                MessageBox.Show("Aucune location valide trouvÃ©e pour ce numÃ©ro.");
                 return;
             }
 
