@@ -14,6 +14,7 @@ namespace localux
         private List<TypeDommage> typesDommage = new();
         private bool isLectureSeule;
 
+        // Charge la location complète
         public FormRestitutionLocation(LocationSansChauffeur location)
         {
             this.location = db.Location
@@ -33,6 +34,7 @@ namespace localux
             AppliquerModeLectureSeuleSiRestituee();
         }
 
+        // Remplit les label info de la location au dessus du formulaire.
         private void ChargerRecapitulatif()
         {
             lbNumeroValue.Text = location.Id.ToString();
@@ -45,6 +47,7 @@ namespace localux
             lbDateRetourValue.Text = location.DateHeureRetour?.ToString("g") ?? "-";
         }
 
+        // Récupère les types de dommage en base puis construit dynamiquement la grille et la légende.
         private void ChargerTypesDommage()
         {
             typesDommage = db.TypeDommage.OrderBy(t => t.Id).ToList();
@@ -52,6 +55,7 @@ namespace localux
             ChargerLegendeTypesDommage();
         }
 
+        // Crée les colonnes de la grille en fonction des types en base (extensible sans code supplémentaire).
         private void InitialiserColonnesDommages()
         {
             dgvDommages.Columns.Clear();
@@ -75,29 +79,24 @@ namespace localux
             }
         }
 
+        // Affiche la légende des types de dommages (Ajoute une légende prédéfini en fonction de son libelle en bdd).
         private void ChargerLegendeTypesDommage()
         {
-            var libellesComplets = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["RS"] = "Rayure superficielle",
-                ["RP"] = "Rayure profonde",
-                ["EC"] = "Enfoncement/Choc"
-            };
-
-            var legendes = typesDommage.Select(t =>
-            {
-                var code = t.Libelle?.Trim() ?? string.Empty;
-                if (libellesComplets.TryGetValue(code, out var texteComplet))
+            var legendes = typesDommage
+                .Select(t => t.Libelle?.Trim())
+                .Where(code => !string.IsNullOrWhiteSpace(code))
+                .Select(code => code!.ToUpperInvariant() switch
                 {
-                    return $"{code} : {texteComplet}";
-                }
-
-                return $"{code} : {code}";
-            });
+                    "RS" => "RS : Rayure superficielle",
+                    "RP" => "RP : Rayure profonde",
+                    "EC" => "EC : Enfoncement/Choc",
+                    _ => code
+                });
 
             lbLegendeTypes.Text = string.Join(" ; ", legendes);
         }
 
+        // Charge les composants à contrôler pour le modèle du véhicule, puis coche les typeDommages si restitution déjà fait.
         private void ChargerComposantsEtDommages()
         {
             var composants = db.Composant
@@ -130,6 +129,7 @@ namespace localux
 
                 var rowIndex = dgvDommages.Rows.Add(valeursLigne);
 
+                // On stocke l'id composant pour le réutiliser lors de l'enregistrement.
                 dgvDommages.Rows[rowIndex].Tag = composant.Id;
             }
         }
@@ -139,6 +139,7 @@ namespace localux
             return dommagesExistants.TryGetValue(composantId, out var types) && types.Contains(typeId);
         }
 
+        // Pré-remplit les champs de saisie si restitution déjà enregistrée.
         private void InitialiserControlesSaisie()
         {
             tbKilometrageRetour.Text = location.KilometrageRetour?.ToString() ?? string.Empty;
@@ -155,6 +156,7 @@ namespace localux
             lbControleValue.Text = $"Contrôle n°{location.Id} réalisé par {nomEmploye}";
         }
 
+        // Passe le formulaire en lecture seule si restitution déjà enregistrée.
         private void AppliquerModeLectureSeuleSiRestituee()
         {
             isLectureSeule = location.LeEmployeId.HasValue;
@@ -173,6 +175,7 @@ namespace localux
             lbEtatFormValue.Text = "Restitution déjà enregistrée";
         }
 
+        // Valide les saisies et enregistre la restitution et les dommages sur la bdd.
         private void btnEnregistrerRestitution_Click(object sender, EventArgs e)
         {
             if (isLectureSeule)
@@ -224,6 +227,7 @@ namespace localux
 
                 foreach (var type in typesDommage)
                 {
+                    // Lit chaque colonne de type de dommage.
                     AjouterDommageSiCoche(row, $"colType{type.Id}", composantId, type.Id);
                 }
             }
@@ -236,6 +240,7 @@ namespace localux
             AppliquerModeLectureSeuleSiRestituee();
         }
 
+        // Ajoute un enregistrement DommageControle uniquement si la case est cochée.
         private void AjouterDommageSiCoche(DataGridViewRow row, string columnName, int composantId, int typeDommageId)
         {
             var coche = row.Cells[columnName].Value as bool? == true;
@@ -252,6 +257,7 @@ namespace localux
             });
         }
 
+        // Force la validation de la checkbox sans avoir à quitter la cellule.
         private void dgvDommages_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dgvDommages.IsCurrentCellDirty)
@@ -260,6 +266,7 @@ namespace localux
             }
         }
 
+        // Gère pour que une seule case cochée par composant.
         private void dgvDommages_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
@@ -286,8 +293,14 @@ namespace localux
                     continue;
                 }
 
+                // Quand une case est cochée, on décoche les autres types pour ce composant.
                 dgvDommages.Rows[e.RowIndex].Cells[colonne.Name].Value = false;
             }
+        }
+
+        private void FormRestitutionLocation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

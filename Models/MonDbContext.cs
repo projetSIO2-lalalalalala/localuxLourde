@@ -33,7 +33,7 @@ public partial class MonDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Collation globale
+        
         modelBuilder
             .UseCollation("utf8mb4_uca1400_ai_ci")
             .HasCharSet("utf8mb4");
@@ -48,7 +48,7 @@ public partial class MonDbContext : DbContext
             .WithMany(m => m.Composants)
             .UsingEntity<Dictionary<string, object>>(
                 "ComposantModele",
-                r => r.HasOne<Modele>().WithMany().HasForeignKey("LeModeleId"),
+                r => r.HasOne<Modele>().WithMany().HasForeignKey("Lgit aeModeleId"),
                 l => l.HasOne<Composant>().WithMany().HasForeignKey("LeComposantId"),
                 j =>
                 {

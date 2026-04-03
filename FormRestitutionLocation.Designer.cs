@@ -58,7 +58,7 @@ namespace localux
             lbNumero.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbNumero.Location = new Point(24, 21);
             lbNumero.Name = "lbNumero";
-            lbNumero.Size = new Size(118, 15);
+            lbNumero.Size = new Size(117, 15);
             lbNumero.TabIndex = 0;
             lbNumero.Text = "Numéro de location";
             // 
@@ -68,7 +68,7 @@ namespace localux
             lbClientNumero.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbClientNumero.Location = new Point(466, 21);
             lbClientNumero.Name = "lbClientNumero";
-            lbClientNumero.Size = new Size(103, 15);
+            lbClientNumero.Size = new Size(104, 15);
             lbClientNumero.TabIndex = 1;
             lbClientNumero.Text = "Numéro de client";
             // 
@@ -78,7 +78,7 @@ namespace localux
             lbClient.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbClient.Location = new Point(466, 49);
             lbClient.Name = "lbClient";
-            lbClient.Size = new Size(129, 15);
+            lbClient.Size = new Size(130, 15);
             lbClient.TabIndex = 2;
             lbClient.Text = "Nom et prénom client";
             // 
@@ -88,7 +88,7 @@ namespace localux
             lbFormule.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbFormule.Location = new Point(24, 49);
             lbFormule.Name = "lbFormule";
-            lbFormule.Size = new Size(52, 15);
+            lbFormule.Size = new Size(53, 15);
             lbFormule.TabIndex = 3;
             lbFormule.Text = "Formule";
             // 
@@ -98,7 +98,7 @@ namespace localux
             lbModele.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbModele.Location = new Point(24, 77);
             lbModele.Name = "lbModele";
-            lbModele.Size = new Size(47, 15);
+            lbModele.Size = new Size(49, 15);
             lbModele.TabIndex = 4;
             lbModele.Text = "Modèle";
             // 
@@ -108,7 +108,7 @@ namespace localux
             lbImmat.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbImmat.Location = new Point(24, 105);
             lbImmat.Name = "lbImmat";
-            lbImmat.Size = new Size(88, 15);
+            lbImmat.Size = new Size(96, 15);
             lbImmat.TabIndex = 5;
             lbImmat.Text = "Immatriculation";
             // 
@@ -118,7 +118,7 @@ namespace localux
             lbDateDepart.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbDateDepart.Location = new Point(466, 77);
             lbDateDepart.Name = "lbDateDepart";
-            lbDateDepart.Size = new Size(151, 15);
+            lbDateDepart.Size = new Size(142, 15);
             lbDateDepart.TabIndex = 6;
             lbDateDepart.Text = "Date et heure de départ";
             // 
@@ -128,7 +128,7 @@ namespace localux
             lbDateRetour.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbDateRetour.Location = new Point(466, 105);
             lbDateRetour.Name = "lbDateRetour";
-            lbDateRetour.Size = new Size(140, 15);
+            lbDateRetour.Size = new Size(141, 15);
             lbDateRetour.TabIndex = 7;
             lbDateRetour.Text = "Date et heure de retour";
             // 
@@ -234,7 +234,7 @@ namespace localux
             lbEtatForm.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbEtatForm.Location = new Point(18, 443);
             lbEtatForm.Name = "lbEtatForm";
-            lbEtatForm.Size = new Size(33, 15);
+            lbEtatForm.Size = new Size(29, 15);
             lbEtatForm.TabIndex = 12;
             lbEtatForm.Text = "Etat";
             // 
@@ -244,7 +244,7 @@ namespace localux
             lbEtatFormValue.Font = new Font("Segoe UI", 9F);
             lbEtatFormValue.Location = new Point(94, 443);
             lbEtatFormValue.Name = "lbEtatFormValue";
-            lbEtatFormValue.Size = new Size(21, 15);
+            lbEtatFormValue.Size = new Size(16, 15);
             lbEtatFormValue.TabIndex = 11;
             lbEtatFormValue.Text = "...";
             // 
@@ -275,7 +275,7 @@ namespace localux
             lbObservation.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbObservation.Location = new Point(18, 325);
             lbObservation.Name = "lbObservation";
-            lbObservation.Size = new Size(78, 15);
+            lbObservation.Size = new Size(80, 15);
             lbObservation.TabIndex = 8;
             lbObservation.Text = "Observations";
             // 
@@ -318,7 +318,7 @@ namespace localux
             lbCoutEstimatif.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbCoutEstimatif.Location = new Point(429, 76);
             lbCoutEstimatif.Name = "lbCoutEstimatif";
-            lbCoutEstimatif.Size = new Size(130, 15);
+            lbCoutEstimatif.Size = new Size(128, 15);
             lbCoutEstimatif.TabIndex = 5;
             lbCoutEstimatif.Text = "Coût estimatif (euros)";
             // 
@@ -356,7 +356,7 @@ namespace localux
             lbKilometrageRetour.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lbKilometrageRetour.Location = new Point(18, 76);
             lbKilometrageRetour.Name = "lbKilometrageRetour";
-            lbKilometrageRetour.Size = new Size(122, 15);
+            lbKilometrageRetour.Size = new Size(115, 15);
             lbKilometrageRetour.TabIndex = 1;
             lbKilometrageRetour.Text = "Kilométrage retour";
             // 
@@ -366,7 +366,7 @@ namespace localux
             lbControleValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lbControleValue.Location = new Point(18, 32);
             lbControleValue.Name = "lbControleValue";
-            lbControleValue.Size = new Size(18, 19);
+            lbControleValue.Size = new Size(15, 19);
             lbControleValue.TabIndex = 0;
             lbControleValue.Text = "-";
             // 
@@ -394,6 +394,7 @@ namespace localux
             Controls.Add(lbNumero);
             Name = "FormRestitutionLocation";
             Text = "Restitution d'un véhicule";
+            Load += FormRestitutionLocation_Load;
             gbControle.ResumeLayout(false);
             gbControle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDommages).EndInit();
