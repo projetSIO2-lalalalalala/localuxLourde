@@ -48,7 +48,7 @@ public partial class MonDbContext : DbContext
             .WithMany(m => m.Composants)
             .UsingEntity<Dictionary<string, object>>(
                 "ComposantModele",
-                r => r.HasOne<Modele>().WithMany().HasForeignKey("Lgit aeModeleId"),
+                r => r.HasOne<Modele>().WithMany().HasForeignKey("LeModeleId"),
                 l => l.HasOne<Composant>().WithMany().HasForeignKey("LeComposantId"),
                 j =>
                 {

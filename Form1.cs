@@ -8,13 +8,8 @@ namespace localux
 {
     public partial class Form1 : Form
     {
-     //nouveau code pour conflit
         private readonly MonDbContext db = new MonDbContext();
 
-        public Form1()
-        {
-            InitializeComponent();
-     //ancien code pour conflit
         public Form1()
         {
             InitializeComponent();
@@ -42,12 +37,6 @@ namespace localux
                 f.ShowDialog();
             });
 
-            var menuConnexion = new ToolStripMenuItem("Connexion", null, (s, e) =>
-            {
-                var f = new FormConnexion();
-                f.ShowDialog();
-                UpdateConnexionState();
-            });
             ToolStripMenuItem menuConnexion;
             if (Session.UtilisateurConnecte == null)
             {

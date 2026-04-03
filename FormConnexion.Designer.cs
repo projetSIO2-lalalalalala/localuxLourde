@@ -90,7 +90,6 @@
             Controls.Add(lbLogin);
             Name = "FormConnexion";
             Text = "FormConnexion";
-            Load += FormConnexion_Load;
             ResumeLayout(false);
             PerformLayout();
         }

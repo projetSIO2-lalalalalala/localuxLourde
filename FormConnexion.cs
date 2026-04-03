@@ -1,41 +1,25 @@
-﻿using localux.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
-using BCrypt.Net;
-
+using localux.Models;
 
 namespace localux
 {
     public partial class FormConnexion : Form
     {
-        private MonDbContext cnx = new MonDbContext();
+        private readonly MonDbContext cnx = new();
+
         public FormConnexion()
         {
             InitializeComponent();
-            
-        }
-
-        private void FormConnexion_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_Click(object sender, EventArgs e)
         {
-            string login = tbLogin.Text;
+            string login = tbLogin.Text.Trim();
             string mdp = tbMdp.Text;
+
             var employe = cnx.Employe.FirstOrDefault(emp => emp.Login == login);
-
-            Session.UtilisateurConnecte = employe;
-
             if (employe == null)
             {
                 MessageBox.Show("Utilisateur inconnu.");
@@ -47,21 +31,39 @@ namespace localux
             if (mdpValide)
             {
                 MessageBox.Show("Connexion réussie !");
-                this.Close(); 
-                return;
+                Session.UtilisateurConnecte = employe;
+                AjouterLogConnexion(employe, "Connexion réussie");
             }
             else
             {
                 MessageBox.Show("Mot de passe incorrect.");
+                AjouterLogConnexion(employe, "Connexion échouée");
+                return;
             }
 
             if (employe.DateModificationMdp == null || (DateTime.Now - employe.DateModificationMdp.Value).TotalDays > 30)
             {
-                MessageBox.Show("Votre mot de passe doit être changé. Veuillez le modifier.");
-                FormModifierMdp f = new FormModifierMdp();
-                f.Show();
-                this.Close();
+                MessageBox.Show("Votre mot de passe a expiré, veuillez le modifier.");
+                using (var f = new FormModifierMdp())
+                {
+                    f.ShowDialog();
+                }
             }
+
+            this.Close();
+        }
+
+        private void AjouterLogConnexion(Employe employe, string action)
+        {
+            var log = new LogConnexion
+            {
+                DateHeure = DateTime.Now,
+                Action = action,
+                LeEmploye = employe,
+                LeEmployeId = employe.Id
+            };
+            cnx.LogConnexion.Add(log);
+            cnx.SaveChanges();
         }
     }
 }
