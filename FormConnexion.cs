@@ -42,12 +42,13 @@ namespace localux
                 return;
             }
 
-            // Vérification du mot de passe avec bcrypt
             bool mdpValide = BCrypt.Net.BCrypt.Verify(mdp, employe.Mdp);
 
             if (mdpValide)
             {
                 MessageBox.Show("Connexion réussie !");
+                this.Close(); 
+                return;
             }
             else
             {

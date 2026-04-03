@@ -43,6 +43,20 @@ public partial class MonDbContext : DbContext
             .HasValue<LocationSansChauffeur>("LocationSansChauffeur")
             .HasValue<LocationAvecChauffeur>("LocationAvecChauffeur");
 
+        modelBuilder.Entity<Composant>()
+            .HasMany(c => c.Modeles)
+            .WithMany(m => m.Composants)
+            .UsingEntity<Dictionary<string, object>>(
+                "ComposantModele",
+                r => r.HasOne<Modele>().WithMany().HasForeignKey("LeModeleId"),
+                l => l.HasOne<Composant>().WithMany().HasForeignKey("LeComposantId"),
+                j =>
+                {
+                    j.ToTable("composant_modele");
+                    j.IndexerProperty<int>("LeComposantId").HasColumnName("composant_id");
+                    j.IndexerProperty<int>("LeModeleId").HasColumnName("modele_id");
+                });
+
 
         OnModelCreatingPartial(modelBuilder);
     }
